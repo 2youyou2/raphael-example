@@ -419,7 +419,7 @@ var Path = cc.Class({
             this.stepAnimate(this._time);
         }
 
-        if ( this._commands.length === 0 || !this._dirty || (this.group && this.group._dirty)) {
+        if ( this._commands.length === 0 || !this._dirty || !(this.group && this.group._dirty)) {
             return;
         }
 

@@ -26,12 +26,14 @@ cc.Class({
     update: function (dt) {
         if (!this._dirty) return;
 
+        this.ctx.clear();
+
         var paths = this.paths;
         for (var i = 0, ii = paths.length; i < ii; i++) {
             var path = paths[i];
             path.update(dt);
         }
 
-        this._dirty = true;
+        this._dirty = false;
     },
 });
