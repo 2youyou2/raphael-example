@@ -39,6 +39,16 @@ var Path = cc.Class({
         _lineCap: LineCap.BUTT,
         _miterLimit: 2,
 
+        _scale: cc.v2(1, 1),
+        _offset: cc.v2(0,0),
+        _rotation: 0,
+
+        _dashOffset: 0,
+        _dashArray: {
+            default: [],
+            type: Number
+        },
+
         lineWidth: {
             get: function () {
                 return this._lineWidth;
@@ -113,17 +123,73 @@ var Path = cc.Class({
             }
         },
 
-        scale: cc.v2(1, 1),
-        offset: cc.v2(0,0),
+        scale: {
+            get: function () {
+                return this._scale;
+            },
+            set: function (value) {
+                if (this._scale.equals(value)) {
+                    return;
+                }
+                this._scale = value;
+                this._dirty = true;
+            }
+        },
 
-        dashOffset: 0,
+        offset: {
+            get: function () {
+                return this._offset;
+            },
+            set: function (value) {
+                if (this._offset.equals(value)) {
+                    return;
+                }
+                this._offset = value;
+                this._dirty = true;
+            }
+        },
+
+        rotation: {
+            get: function () {
+                return cc.radiansToDegrees(this._rotation);
+            },
+            set: function (value) {
+                if (this._rotation === value) {
+                    return;
+                }
+                this._rotation = cc.degreesToRadians(value);
+                this._dirty = true;
+            }
+        },
+
+        dashOffset: {
+            get: function () {
+                return this._dashOffset;
+            },
+            set: function (value) {
+                if (this._dashOffset === value) {
+                    return;
+                }
+                this._dashOffset = value;
+                this._dirty = true;
+            }
+        },
         dashArray: {
-            default: [],
-            type: cc.Integer
+            get: function () {
+                return this._dashArray;
+            },
+            set: function (value) {
+                if (Array.isArray(value)) {
+                    return;
+                }
+                this._dashArray = value;
+                this._dirty = true;
+            }
         },
 
         _dirty: {
             default: true,
+            serializable: false,
             notify: function () {
                 if (this.group && this._dirty) {
                     this.group._dirty = true;
@@ -213,6 +279,29 @@ var Path = cc.Class({
         this._commands.push(['Z']);
     },
 
+    points: function (points, closed) {
+        if (points.length <= 1) {
+            return;
+        }
+
+        this.clear();
+
+        var lastPoint = points[0];
+        this.M(lastPoint.x, lastPoint.y);
+
+        for (var i = 1, ii = points.length; i < ii; i++) {
+            var point = points[i];
+            this.C(lastPoint.x, lastPoint.y, point.x, point.y, point.x, point.y);
+            lastPoint = point;
+        }
+
+        if (closed) {
+            this.C(lastPoint.x, lastPoint.y, points[0].x, points[0].y, points[0].x, points[0].y);
+        }
+
+        this.makePath();
+    },
+
     makePath: function () {
         this._commands = path2curve(this._commands);
         this._dirty = true;
@@ -270,23 +359,57 @@ var Path = cc.Class({
         var scaleY = this.scale.y;
         var offsetX = this.offset.x;
         var offsetY = this.offset.y;
+        var rotation = this.rotation;
 
         var c = cmd[0];
         cmd = cmd.slice(1, cmd.length);
 
         if (scaleX === 1 && scaleY === 1 &&
-            offsetX === 0 && offsetY === 0) {
+            offsetX === 0 && offsetY === 0 &&
+            rotation === 0) {
             return cmd;
         }
 
+        var t = {a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0};
+        t.tx = offsetX;
+        t.ty = offsetY;
+
+        // rotation Cos and Sin
+        
+        if (rotation) {
+            var rotationRadians = rotation * 0.017453292519943295;  //0.017453292519943295 = (Math.PI / 180);   for performance
+            t.c = Math.sin(rotationRadians);
+            t.d = Math.cos(rotationRadians);
+            t.a = t.d;
+            t.b = -t.c;
+        }
+
+
+        // Firefox on Vista and XP crashes
+        // GPU thread in case of scale(0.0, 0.0)
+        var sx = (scaleX < 0.000001 && scaleX > -0.000001) ? 0.000001 : scaleX,
+            sy = (scaleY < 0.000001 && scaleY > -0.000001) ? 0.000001 : scaleY;
+
+        // scale
+        if (scaleX !== 1 || scaleY !== 1) {
+            t.a *= sx;
+            t.b *= sx;
+            t.c *= sy;
+            t.d *= sy;
+        }
+
+        var tempPoint = cc.v2();
+
         if (c === 'M' || c === 'L' || c === 'C') {
-            for (var j = 0, jj = cmd.length; j < jj; j++) {
-                if (j % 2 === 0) {
-                    cmd[j] = (cmd[j] + offsetX) * scaleX;
-                }
-                else {
-                    cmd[j] = (cmd[j] + offsetY) * scaleY;
-                }
+            for (var i = 0, ii = cmd.length / 2; i < ii; i++) {
+                var j = i*2;
+                tempPoint.x = cmd[j];
+                tempPoint.y = cmd[j + 1];
+
+                tempPoint = cc.pointApplyAffineTransform(tempPoint, t);
+
+                cmd[j] = tempPoint.x;
+                cmd[j+1] = tempPoint.y;
             }
         }
 
@@ -423,6 +546,7 @@ var Path = cc.Class({
             return;
         }
 
+        this.applyStyle();
         this.drawCommands();
 
         if (this._fillColor) this.ctx.fill();
