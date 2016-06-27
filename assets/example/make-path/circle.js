@@ -3,7 +3,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        var path = this.addComponent('ga.path');
+        var path = this.addComponent('R.path');
 
         path.selected = true;
 

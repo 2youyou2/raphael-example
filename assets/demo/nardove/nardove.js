@@ -16,7 +16,7 @@ cc.Class({
         this.time = this.addJellyTimer;
         this.count = 0;
 
-        this.group = this.addComponent('ga.group');
+        this.group = this.addComponent('R.group');
     },
 
     // called every frame, uncomment this function to activate update callback

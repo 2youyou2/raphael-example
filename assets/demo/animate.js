@@ -5,7 +5,7 @@ cc.Class({
     extends: cc.Component,
 
     onLoad: function () {
-        var path = this.addComponent('ga.path');
+        var path = this.addComponent('R.path');
         path.strokeColor = cc.Color.WHITE;
         path.lineWidth = 4;
         path.fillColor = null;

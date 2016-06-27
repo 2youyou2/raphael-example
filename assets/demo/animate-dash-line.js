@@ -9,7 +9,7 @@ cc.Class({
     },
 
     onLoad: function () {
-        let path = this.addComponent('ga.path');
+        let path = this.addComponent('R.path');
         path.strokeColor = cc.Color.WHITE;
         path.lineWidth = 4;
         path.fillColor = null;
