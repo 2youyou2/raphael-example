@@ -1,5 +1,5 @@
 
-var analysisPath = require('./path-analysis').analysisPath;
+var analysisPath = require('./ga.analysis').analysisPath;
 
 var sqrt = Math.sqrt;
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var bezlen = require('./path-length').bezlen;
+var bezlen = require('./ga.length').bezlen;
 
 var mmax = Math.max;
 var mmin = Math.min;

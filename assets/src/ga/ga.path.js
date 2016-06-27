@@ -1,10 +1,10 @@
 'use strict';
 
-var getCubicBezierCurvePath = require('./path-smooth');
-var path2curve = require('./path-curve').path2curve;
+var getCubicBezierCurvePath = require('./ga.smooth');
+var path2curve = require('./ga.curve').path2curve;
 
-var drawDashPath = require('./path-dash').drawDashPath;
-var analysisPath = require('./path-analysis').analysisPath;
+var drawDashPath = require('./ga.dash').drawDashPath;
+var analysisPath = require('./ga.analysis').analysisPath;
 
 var Numerical = require('./numerical');
 var kappa = /*#=*/Numerical.KAPPA,
