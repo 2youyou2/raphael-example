@@ -14,7 +14,6 @@ cc.Class({
         path.lineWidth = 4;
         path.fillColor = null;
 
-        path.offset = cc.v2(-25, -30);
         path.scale = cc.v2(4, -4);
 
         this.path = path;
@@ -27,6 +26,9 @@ cc.Class({
         function animate () {
             let pathString = pathStrings[i];
             path.path(pathString);
+
+            var boundingBox = path.getBoundingBox();
+            path.offset = path.offset.add(cc.p(-boundingBox.width/2 - boundingBox.x, -boundingBox.height/2 - boundingBox.y));
 
             i = ++i % pathStrings.length;
 

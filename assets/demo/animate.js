@@ -10,8 +10,10 @@ cc.Class({
         path.lineWidth = 4;
         path.fillColor = null;
 
-        path.offset = cc.v2(-25, -30);
         path.scale = cc.v2(4, -4);
+        path.offset = cc.v2(-100, 120);
+
+        this.path = path;
 
         var pathStrings = _Demo.paths;
 
