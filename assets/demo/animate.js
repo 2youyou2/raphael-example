@@ -11,7 +11,7 @@ cc.Class({
         path.fillColor = null;
 
         path.scale = cc.v2(4, -4);
-        path.offset = cc.v2(-100, 120);
+        path.position = cc.v2(-100, 120);
 
         this.path = path;
 

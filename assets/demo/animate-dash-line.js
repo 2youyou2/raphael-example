@@ -28,7 +28,7 @@ cc.Class({
             path.path(pathString);
 
             var boundingBox = path.getBoundingBox();
-            path.offset = path.offset.add(cc.p(-boundingBox.width/2 - boundingBox.x, -boundingBox.height/2 - boundingBox.y));
+            path.position = path.position.add(cc.p(-boundingBox.width/2 - boundingBox.x, -boundingBox.height/2 - boundingBox.y));
 
             i = ++i % pathStrings.length;
 

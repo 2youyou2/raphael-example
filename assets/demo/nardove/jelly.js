@@ -101,7 +101,7 @@ cc.Class({
 
         this.acceleration.x = this.acceleration.y = 0;
 
-        this.path.offset = this.location.clone();
+        this.path.position = this.location.clone();
 
         // Rotation alignment
         var orientation = -(Math.atan2(this.velocity.y, this.velocity.x) - Math.PI/2);
@@ -126,7 +126,7 @@ cc.Class({
         for (var t = 0; t < this.numTentacles; t++) {
             this.tentacles[t].anchor.x = this.pathPoints[this.startTentacles+t].x;
             this.tentacles[t].anchor.y = this.pathPoints[this.startTentacles+t].y;
-            this.tentacles[t].path.offset = this.path.offset;
+            this.tentacles[t].path.position = this.path.position;
             this.tentacles[t].path.rotation = this.path.rotation;
             this.tentacles[t].update();
         }

@@ -12,5 +12,7 @@ cc.Class({
         path = group.addPath();
         path.circle(50, 50, 50, 50);
         path.makePath();
+
+        group.rotation = 45;
     },
 });
