@@ -11,7 +11,7 @@ cc.Class({
 
     init: function(group, numSegments, length) {
         this.path = group.addPath();
-        this.path.fillColor = null;
+        this.path.fillColor = 'none';
         this.numSegments = numSegments;
         this.segmentLength = Math.random() * 1 + length - 1;
         

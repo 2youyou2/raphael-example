@@ -8,7 +8,7 @@ cc.Class({
         var path = this.addComponent('R.path');
         path.strokeColor = cc.Color.WHITE;
         path.lineWidth = 4;
-        path.fillColor = null;
+        path.fillColor = 'none';
 
         path.scale = cc.v2(4, -4);
         path.position = cc.v2(-100, 120);
