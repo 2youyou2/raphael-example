@@ -4,12 +4,12 @@ var Tentacle = require('./tentacle');
 // Colours courtesy of deliquescence:
 // http://www.colourlovers.com/palette/38473/boy_meets_girl
 var colours = [{s:'#1C4347', f:'#49ACBB'},
-                {s:'#1b3b3a', f:'#61cac8'},
-                {s:'#2d393f', f:'#88a5b3'},
-                {s:'#422b3a', f:'#b0809e'},
-                {s:'#5b263a', f:'#d85c8a'},
-                {s:'#580c23', f:'#ff3775'},
-                {s:'#681635', f:'#EB1962'}];
+               {s:'#1b3b3a', f:'#61cac8'},
+               {s:'#2d393f', f:'#88a5b3'},
+               {s:'#422b3a', f:'#b0809e'},
+               {s:'#5b263a', f:'#d85c8a'},
+               {s:'#580c23', f:'#ff3775'},
+               {s:'#681635', f:'#EB1962'}];
 
 cc.Class({
     extends: cc.Component,
