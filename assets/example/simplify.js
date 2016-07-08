@@ -6,7 +6,7 @@ cc.Class({
         this.path = this.addComponent('R.path');
         this.path.fillColor = 'none';
         this.path.lineWidth = 5;
-        this.path.selected = true;
+        this.path.showHandles = true;
 
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,

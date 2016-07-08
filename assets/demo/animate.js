@@ -1,6 +1,4 @@
 
-const inputToRGB = require('../lib/tinycolor').inputToRGB;
-
 cc.Class({
     extends: cc.Component,
 

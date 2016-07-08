@@ -1,6 +1,4 @@
 
-const inputToRGB = require('../lib/tinycolor').inputToRGB;
-
 cc.Class({
     extends: cc.Component,
 
@@ -27,8 +25,7 @@ cc.Class({
             let pathString = pathStrings[i];
             path.path(pathString);
 
-            var boundingBox = path.getBoundingBox();
-            path.position = path.position.add(cc.p(-boundingBox.width/2 - boundingBox.x, -boundingBox.height/2 - boundingBox.y));
+            path.center(0, 0);
 
             i = ++i % pathStrings.length;
 
