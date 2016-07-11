@@ -6,7 +6,7 @@ cc.Class({
         var path = this.addComponent('R.path');
 
         path.selected = true;
-        path.fillColor = null;
+        path.fillColor = 'none';
 
         path.M(-100, 0);
         path.C(-100, -100, 50,-100, 50,0);

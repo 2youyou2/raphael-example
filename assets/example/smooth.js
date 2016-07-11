@@ -5,7 +5,7 @@ cc.Class({
         var path = this.addComponent('R.path');
 
         path.lineWidth = 4;
-        path.selected = true;
+        path.showHandles = true;
 
         path.rect(-100, -100, 200, 200);
 
