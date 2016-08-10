@@ -10,6 +10,6 @@
   "author": "2youyou2",
   "dependencies": {
     "cheerio": "0.20.0",
-    "DomHandler": "2.3.0"
+    "domhandler": "2.3.0"
   }
 }
