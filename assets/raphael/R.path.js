@@ -2,6 +2,7 @@
 
 var trasform = require('./component/R.transform');
 var style = require('./component/R.style');
+var utils = require('./utils/R.utils');
 
 // optional
 var smooth = require('./component/optional/R.smooth');
@@ -429,7 +430,7 @@ var PathDefine = {
     }
 };
 
-var Path = cc.Class(R.utils.defineClass(PathDefine, trasform, style, smooth, simplify, animate));
+var Path = cc.Class(utils.defineClass(PathDefine, trasform, style, smooth, simplify, animate));
 
 ['M', 'm', 'L', 'l', 'H', 'h', 'V', 'v', 'C', 'c', 'S', 's', 'Q', 'q', 'T', 't', 'A', 'a', 'Z','z'].forEach(function (cmd) {
     Path.prototype[cmd] = function () {

@@ -2,6 +2,7 @@ var Path = require('./R.path');
 
 var trasform = require('./component/R.transform');
 var style = require('./component/R.style');
+var utils = require('./utils/R.utils');
 
 // optional
 var svg = require('./component/optional/R.svg');
@@ -114,4 +115,4 @@ var GroupDefine = {
     },
 };
 
-var Group = cc.Class(R.utils.defineClass(GroupDefine, trasform, style, svg));
+var Group = cc.Class(utils.defineClass(GroupDefine, trasform, style, svg));
