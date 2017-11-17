@@ -37,7 +37,7 @@ cc.Class({
         }
         
         animate();
-        setInterval(animate, this.duration * 1.5 * 1000);
+        this.schedule(animate, this.duration * 1.5 * 1000);
     },
 
     update: function (dt) {
