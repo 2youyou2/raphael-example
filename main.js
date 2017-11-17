@@ -201,24 +201,3 @@
     }
 
 })();
-
-    // Begin Cocos Analytics
-    (function () {
-        if ((typeof cocosAnalytics) !== 'undefined'){
-            var initArgs = {
-                appID: '13798',
-                appSecret: '959b3ac0037d0f3c2fdce94f8421a9b2',
-                channel: '',
-                version: ''
-            };
-
-            if (!initArgs.appID || !initArgs.appSecret || !initArgs.version) {
-                console.error('请在编辑器设置好 Cocos Analytics 的 appID, appSecret 和 version');
-                return;
-            }
-
-            cocosAnalytics.init(initArgs);
-        }
-    })();
-    // End Cocos Analytics
-    
