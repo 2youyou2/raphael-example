@@ -18,9 +18,9 @@ function toNumberArray (s) {
 
 function parseStyle (current, name, value) {
     if (name === 'fill') {
-        current.fillColor = value === 'none' ? null : cc.hexToColor(value);
+        current.fillColor = value === 'none' ? null : new cc.Color().fromHEX(value);
     } else if (name === 'stroke') {
-        current.strokeColor = value === 'none' ? null : cc.hexToColor(value);
+        current.strokeColor = value === 'none' ? null : new cc.Color().fromHEX(value);
     } else if (name === 'stroke-width') {
         current.lineWidth = parseFloat(value);
     } else if (name === 'stroke-linejoin') {
@@ -102,13 +102,13 @@ function parseNode (node, parent) {
 
 var Svg = {
     loadSvg: function (string) {
-        if (typeof string !== 'string') {
+        if (typeof string.text !== "string") {
             return;
         }
 
         var $;
         try {
-            $ = cheerio.load(string);
+            $ = cheerio.load(string.text);
         }
         catch (err) {
             cc.error(err.toString());

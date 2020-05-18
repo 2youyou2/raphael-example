@@ -32,10 +32,10 @@ var GroupDefine = {
     // use this for initialization
     onLoad: function () {
         this.init();
-
         if (!this.ctx) {
-            this.ctx = new _ccsg.GraphicsNode();
-            this.node._sgNode.addChild(this.ctx);
+            let _gNode = new cc.Node();
+            this.ctx = _gNode.addComponent(cc.Graphics);
+            this.node.addChild(_gNode);
         }
     },
 

@@ -59,8 +59,9 @@ var PathDefine = {
         this.init();
 
         if (!this.ctx) {
-            this.ctx = new _ccsg.GraphicsNode();
-            this.node._sgNode.addChild(this.ctx);
+            let _gNode = new cc.Node();
+            this.ctx = _gNode.addComponent(cc.Graphics);
+            this.node.addChild(_gNode);
 
             this._applyStyle();
         }
@@ -189,7 +190,7 @@ var PathDefine = {
         y = y || 0;
         
         var bbox = this.getBbox();
-        this.position = this.position.add(cc.p(-bbox.width/2 - bbox.x + x, -bbox.height/2 - bbox.y + y));
+        this.position = this.position.add(cc.v2(-bbox.width/2 - bbox.x + x, -bbox.height/2 - bbox.y + y));
     },
 
     _curves: function () {
@@ -290,8 +291,8 @@ var PathDefine = {
         }
         else {
             var rect = cc.rect(minx, miny, maxx - minx, maxy - miny);
-            cmds.bbox = cc.rectApplyAffineTransform(rect, this.getTransform());
-            cmds.worldBbox = cc.rectApplyAffineTransform(rect, this.getWorldTransform());
+            cmds.bbox = cc.AffineTransform.transformRect(cc.AffineTransform.identity, rect, this.getTransform());
+            cmds.worldBbox = cc.AffineTransform.transformRect(cc.AffineTransform.identity, rect, this.getWorldTransform());
         }
     },
 
@@ -406,7 +407,6 @@ var PathDefine = {
             }
 
             if (this.getStyledColor('strokeColor')) {
-                this.ctx.beginPath();
                 this._drawDashPath();
                 this.ctx.stroke();
             }

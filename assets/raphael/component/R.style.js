@@ -120,7 +120,7 @@ var Style = {
             value = null;
         }
         else if (typeof value === 'string') {
-            value = cc.hexToColor(value);
+            value = new cc.Color().fromHEX(value);
         }
 
         return value;

@@ -51,7 +51,7 @@ function drawDashPoints (points, ctx, dashArray, dashOffset, transform) {
                     y1 = y1 + p * (y - y1);
 
                     if (transform) {
-                        var p = cc.pointApplyAffineTransform(x1, y1, transform);
+                        var p = cc.AffineTransform.transformVec2(cc.v2(0, 0), x1, y1, transform);
                         ctx.moveTo(p.x, p.y);    
                     }
                     else {
@@ -67,7 +67,7 @@ function drawDashPoints (points, ctx, dashArray, dashOffset, transform) {
                     y1 = y;
 
                     if (transform) {
-                        var p = cc.pointApplyAffineTransform(x1, y1, transform);
+                        var p = cc.AffineTransform.transformVec2(cc.v2(0, 0), x1, y1, transform);
                         ctx.lineTo(p.x, p.y);    
                     }
                     else {
@@ -85,7 +85,7 @@ function drawDashPoints (points, ctx, dashArray, dashOffset, transform) {
                     y1 = y1 + p * (y - y1);
 
                     if (transform) {
-                        var p = cc.pointApplyAffineTransform(x1, y1, transform);
+                        var p = cc.AffineTransform.transformVec2(cc.v2(0, 0), x1, y1, transform);
                         ctx.lineTo(p.x, p.y);    
                     }
                     else {
