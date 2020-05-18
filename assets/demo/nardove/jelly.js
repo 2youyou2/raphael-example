@@ -69,8 +69,8 @@ cc.Class({
         this.path.smooth();
 
         this.path.lineWidth = 5;
-        this.path.lineColor = cc.hexToColor(colours[id].s);
-        this.path.fillColor = cc.hexToColor(colours[id].f);
+        this.path.lineColor = new cc.Color().fromHEX(colours[id].s);
+        this.path.fillColor = new cc.Color().fromHEX(colours[id].f);
 
 
         // Create tentacles
@@ -105,7 +105,7 @@ cc.Class({
 
         // Rotation alignment
         var orientation = -(Math.atan2(this.velocity.y, this.velocity.x) - Math.PI/2);
-        this.path.rotation = cc.radiansToDegrees(orientation);
+        this.path.rotation = cc.misc.radiansToDegrees(orientation);
 
         // Expansion Contraction
         for (var i = 0; i < this.pathSides; i++) {

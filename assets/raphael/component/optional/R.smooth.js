@@ -132,10 +132,10 @@ module.exports = {
             var c = cmd[0];
 
             if (c === 'M') {
-                knots.push( cc.p(cmd[1], cmd[2]) );
+                knots.push( cc.v2(cmd[1], cmd[2]) );
             }
             else if(c === 'C') {
-                knots.push( cc.p(cmd[5], cmd[6]) );
+                knots.push( cc.v2(cmd[5], cmd[6]) );
             }
         });
 

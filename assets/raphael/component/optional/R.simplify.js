@@ -11,10 +11,10 @@ var Fitter = {
             var c = cmd[0];
 
             if (c === 'M') {
-                points.push( cc.p(cmd[1], cmd[2]) );
+                points.push( cc.v2(cmd[1], cmd[2]) );
             }
             else if(c === 'C') {
-                points.push( cc.p(cmd[5], cmd[6]) );
+                points.push( cc.v2(cmd[5], cmd[6]) );
             }
         });
 
